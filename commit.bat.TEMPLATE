@@ -5,5 +5,5 @@ git config --local credential.helper ""
 git pull
 git add -A
 git commit -m "loop"
-git push https://the-red-dice:TOKEN@github.com/the-red-dice/the-red-dice-github.io.git
-git push
+git push https://the-red-dice:TOKEN@github.com/the-red-dice/the-red-dice.github.io.git
+git pull
