@@ -1,7 +1,7 @@
 @echo off
 git config --local user.name the-red-dice
 git config --local user.email test@gmail.com
-git config --local credential.helper store
+git config --local credential.helper ""
 git pull
 git add -A
 git commit -m "loop"
