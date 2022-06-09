@@ -1,0 +1,1110 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>&#127796; The Red Dice - Love, Family, Friends, Relationships - &#129716;start-here</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-family: Whitney;
+            font-weight: 300;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-family: Whitney;
+            font-weight: 400;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-family: Whitney;
+            font-weight: 500;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-family: Whitney;
+            font-weight: 600;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-family: Whitney;
+            font-weight: 700;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #23262a;
+            font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #0068e0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+            image-rendering: high-quality;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .preamble {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            max-width: 100%;
+            padding: 1rem;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 1rem;
+        }
+
+        .preamble__entry {
+            margin-bottom: 0.15rem;
+            color: #2f3136;
+            font-size: 1.4rem;
+        }
+
+        .preamble__entry--small {
+            font-size: 1rem;
+        }
+
+        .chatlog {
+            padding: 1rem 0;
+            width: 100%;
+            border-top: 1px solid #eceeef;
+            border-bottom: 1px solid #eceeef;
+        }
+
+        .chatlog__message-group {
+            margin-bottom: 1rem;
+        }
+
+        .chatlog__message-container {
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message-container--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message-container--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__message {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            padding: 0.15rem 0;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message:hover {
+            background-color: #fafafa;
+        }
+
+        .chatlog__message:hover .chatlog__short-timestamp {
+            display: block;
+        }
+
+        .chatlog__message-aside {
+            grid-column: 1;
+            width: 72px;
+            padding: 0.15rem 0.15rem 0 0.15rem;
+            text-align: center;
+        }
+
+        .chatlog__reference-symbol {
+            height: 10px;
+            margin: 6px 4px 4px 36px;
+            border-left: 2px solid #c7ccd1;
+            border-top: 2px solid #c7ccd1;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .chatlog__short-timestamp {
+            display: none;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message-primary {
+            grid-column: 2;
+            min-width: 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            margin-bottom: 0.15rem;
+            align-items: center;
+            color: #5f5f60;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-avatar {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__reference-author {
+            margin-right: 0.3rem;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link .hljs {
+            display: inline;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-link:hover *:not(.chatlog__markdown-spoiler) {
+            color: inherit;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__header {
+            margin-bottom: 0.1rem;
+        }
+
+        .chatlog__author {
+            font-weight: 600;
+            color: #2f3136;
+        }
+
+        .chatlog__bot-label {
+            position: relative;
+            top: -0.1rem;
+            margin-left: 0.3rem;
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__content {
+            padding-right: 1rem;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__attachment {
+            position: relative;
+            width: fit-content;
+            margin-top: 0.3rem;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 999;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #dcddde;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05rem;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            max-width: 520px;
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #ebedef;
+            border-radius: 3px;
+            background-color: #f2f3f5;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3rem;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25rem;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: rgba(227, 229, 232, 1);
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.6rem;
+            border: 1px solid rgba(204, 204, 204, 0.3);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: rgba(249, 249, 249, 0.3);
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author-container {
+            display: flex;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author {
+            color: #4f545c;
+            font-size: 0.875rem;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__embed-author-link {
+            color: #4f545c;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.5rem;
+            color: #4f545c;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-description {
+            color: #2e3338;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5rem;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6rem;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 50px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2rem;
+            color: #36393e;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-field-value {
+            color: #2e3338;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            max-width: 80px;
+            max-height: 80px;
+            margin-left: 1.2rem;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6rem;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-footer-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.2rem;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            margin: 0.35rem 0.1rem 0.1rem 0;
+            padding: 0.125rem 0.375rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background-color: #f2f3f5;
+            align-items: center;
+        }
+
+        .chatlog__reaction:hover {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35rem;
+            color: #4f5660;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #2e3338;
+        }
+
+        .chatlog__markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .chatlog__markdown-preserve {
+            white-space: pre-wrap;
+        }
+
+        .chatlog__markdown-spoiler {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-spoiler--hidden {
+            cursor: pointer;
+            background-color: #b9bbbe;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-spoiler--hidden:hover {
+            background-color: rgba(185, 187, 190, 0.8);
+        }
+
+        .chatlog__markdown-spoiler--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-quote {
+            display: flex;
+            margin: 0.05rem 0;
+        }
+
+        .chatlog__markdown-quote-border {
+            margin-right: 0.5rem;
+            border: 2px solid #c7ccd1;
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-pre {
+            background-color: #f9f9f9;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .chatlog__markdown-pre--multiline {
+            margin-top: 0.25rem;
+            padding: 0.5rem;
+            border: 2px solid #f3f3f3;
+            border-radius: 5px;
+            color: #657b83;
+        }
+
+        .chatlog__markdown-pre--multiline.hljs {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .chatlog__markdown-pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__markdown-mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(88, 101, 242, .15);
+            color: #505cdc;
+            font-weight: 500;
+        }
+
+        .chatlog__markdown-mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .chatlog__markdown-timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #5e6772;
+        }
+
+        .chatlog__emoji {
+            width: 1.325rem;
+            height: 1.325rem;
+            margin: 0 0.06rem;
+            vertical-align: -0.4rem;
+        }
+
+        .chatlog__emoji--small {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .chatlog__emoji--large {
+            width: 2.8rem;
+            height: 2.8rem;
+        }
+
+        .postamble {
+            padding: 1.25rem;
+        }
+
+        .postamble__entry {
+            color: #2f3136;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__markdown-pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('chatlog__message-container-' + id);
+            if (!element)
+                return;
+
+            event.preventDefault();
+            element.classList.add('chatlog__message-container--highlighted');
+
+            window.scrollTo({
+                top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                behavior: 'smooth'
+            });
+
+            window.setTimeout(function() {
+                element.classList.remove('chatlog__message-container--highlighted');
+            }, 2000);
+        }
+
+        function showSpoiler(event, element) {
+            if (!element)
+                return;
+
+            if (element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+
+            if (element.classList.contains('chatlog__markdown-spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__markdown-spoiler--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="attachment-icon" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z"/>
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z"/>
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z"/>
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z"/>
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/868058023342526464/d3242e5692ba2207349c68dbeab2bea7.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">&#127796; The Red Dice - Love, Family, Friends, Relationships</div>
+        <div class="preamble__entry">Start here / &#129716;start-here</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-896340343740575765" class="chatlog__message-container chatlog__message-container--pinned" data-message-id="896340343740575765">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="no one...#5198" data-user-id="896330578377469964">noone</span>
+
+
+                        <span class="chatlog__timestamp">09-Oct-21 01:16 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">- Целта на тази група е развитие във взаимоотношенията с жените
+
+Възможностите, които ти предлага тази група са:
+- Участване в общност със общи интереси и срещи на живо
+- Възможност за развитие към общности на хора с по-високи резултати
+- Представи се с едно изречение в <span class="chatlog__markdown-mention">#&#128172;-2022</span> канала
+- Ако искаш развитие към горните нива, добави твоето <span class="chatlog__markdown-mention">#&#127922;-players-bio</span> 
+
+- В <span class="chatlog__markdown-mention">#&#128172;-2022</span> споделяй опит и успехи, питай въпроси, учи и се забавлявай
+- Групата е разделена на много нива. На всяко следващо ниво се отваря достъп до нови преживявания и методи
+
+Изпитът за следващото ниво започва от момента, в който влезнеш в групата. АКТИВНОСТ и РЕЗУЛТАТИ. ХАРАКТЕР и СИЛА
+
+Изисквания за <span class="chatlog__markdown-mention">#&#128172;-seeders</span>:
+- Активност в групата, помагане на другите и резултати. Level 10 в канала - <a href="https://bit.ly/the-red-dice-leaderboard">https://bit.ly/the-red-dice-leaderboard</a>
+- Поне едно гадже с над 100 хил гледания/фолъра/годишна печалба, 30 срещи за месец, връзка 3 години, спечелването и от социална група от над 100 мъже или ротация на 4 жени. 1 от изисквания да е изпълнено
+- Излизане на живо с някой от <span class="chatlog__markdown-mention">#&#128172;-seeders</span> и одобрение от него
+
+Успех!
+<img loading="lazy" class="chatlog__emoji " alt="🌊" title="ocean" src="https://twemoji.maxcdn.com/2/svg/1f30a.svg"> <img loading="lazy" class="chatlog__emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️ <img loading="lazy" class="chatlog__emoji " alt="🔥" title="fire" src="https://twemoji.maxcdn.com/2/svg/1f525.svg">
+
+Учи от <span class="chatlog__markdown-mention">#&#128218;-learn</span> и <span class="chatlog__markdown-mention">#&#128161;-summaries</span></span>
+
+                            <span class="chatlog__edited-timestamp" title="20-Jan-22 10:18 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340391647920177" class="chatlog__message-container " data-message-id="896340391647920177">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:16 PM">13:16</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">----</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340435306414081" class="chatlog__message-container " data-message-id="896340435306414081">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:16 PM">13:16</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Categories
+<span class="chatlog__markdown-mention">#&#128138;-red-pill</span> - женския мозък и поведение от наука и опит
+<span class="chatlog__markdown-mention">#&#129498;-online-dating</span> - всичко за чатовете и играта с текст
+<span class="chatlog__markdown-mention">#&#129502;-offline-dating</span> - всичко за играта с думи и поведение на живо
+<span class="chatlog__markdown-mention">#резултати</span> - всичко за връзките и гаджетата
+<span class="chatlog__markdown-mention">#&#129328;-жени-и-деца</span> - всичко за семейство и деца
+
+Rooms:
+<span class="chatlog__markdown-mention">#&#129716;start-here</span> <span class="chatlog__markdown-mention">#&#128172;-2022</span> <span class="chatlog__markdown-mention">#&#128172;-2021</span> <span class="chatlog__markdown-mention">#&#128218;-learn</span> <span class="chatlog__markdown-mention">#&#128161;-summaries</span> <span class="chatlog__markdown-mention">#&#128226;-how-to-invite</span> <span class="chatlog__markdown-mention">#&#127922;-players-bio</span> <span class="chatlog__markdown-mention">#&#128274;changelog</span></span>
+
+                            <span class="chatlog__edited-timestamp" title="20-Jan-22 10:19 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340458643533825" class="chatlog__message-container " data-message-id="896340458643533825">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:16 PM">13:16</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">-----
+<span class="chatlog__markdown-mention">#&#128172;-seeders</span> rooms:
+<span class="chatlog__markdown-mention">#&#128172;-seeders</span> <span class="chatlog__markdown-mention">#&#129502;-seeders-offline-dating</span><span class="chatlog__markdown-mention">#&#127922;-seeders-dating-wins</span> <span class="chatlog__markdown-mention">#&#129498;-seeders-online-dating</span> <span class="chatlog__markdown-mention">#&#127922;-player-stats</span></span>
+
+                            <span class="chatlog__edited-timestamp" title="20-Jan-22 10:19 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340482022592592" class="chatlog__message-container " data-message-id="896340482022592592">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:17 PM">13:17</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Leaderboard - <a href="https://mee6.xyz/leaderboard/868058023342526464">https://mee6.xyz/leaderboard/868058023342526464</a></span>
+
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(98, 211, 245, 255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://mee6.xyz/leaderboard/868058023342526464">
+                                                        <div class="chatlog__markdown chatlog__markdown-preserve">MEE6 - The Discord Bot</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="chatlog__markdown chatlog__markdown-preserve">Install our Discord bot to set up leveling, moderation, music, Twitch, YouTube, and Reddit notifications for your Discord server.</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340516214558731" class="chatlog__message-container " data-message-id="896340516214558731">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:17 PM">13:17</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">-----</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340537295134722" class="chatlog__message-container " data-message-id="896340537295134722">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:17 PM">13:17</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Като цяло в живота има 3 фундамента:
+- HEALTH (здраве)
+- WEALTH (богатство)
+- RELATIONSHIPS (връзки)
+
+И дори в едното да си на върха ако нямаш другите 2, щастието ти куца.
+Може да имаш топ здраве, но ако нямаш пари или нямаш жени, какво от това.
+Може да имаш купища пари, злато и имоти, но ако си болен от стрес или нямаш приятели, какво от това.
+Може да имаш приятелствата и връзките, но ако нямаш пукнат лев и здраве пак няма да е добре.
+
+Ако нямаш който и да е от трите фундамента, СТРАДАШ психически. Нормална емоционална реакция, с която мозъкът ти казва, че нещо не е наред и трябва да промениш живота си.
+
+Целта на тези групи е да станеш завършен войн и постоянно да имаш около себе си хора на по-високо ниво от теб.
+
+Това е най-близката възможност за присъединяването към модерно Илюминатско общество, която повечето от вас ще получат за целия си живот, защото не сте родени с власт по кръвна линия.
+
+Аз също не съм, но съм имал късметът да ме приемат като ученик поредица от най-добрите в света. 
+
+И за последните 10 години съм постигал почти всичко, за което повечето хора само си мечтаят - световни първенства в спорта, Fobres 30 под 30 в бизнеса, суперколи, имоти, милиони печалба от различни бизнеси, ротации на множество връзки... и това са просто ежедневни постижения за хората от по-високите нива.
+
+Има толкова много нива на матрицата.
+
+Дори и да имаш бизнес, да изкарваш 1-2 милиона годишно и да се мислиш за голямата работа, нищо не знаеш и ще бъдеш унищожен от предстоящия преход.
+
+Следва уникален период на робство и преразпределение. На по-ниските нива тук, ще излезнеш от матрицата.
+
+Бизнес, хубава жена, безсмъртие, верни приятели.
+
+В по-високите нива правим много повече от това. Множество паспорти, имения, хареми, династии, брандиране в историята и моделиране на бъдещето.
+
+YOU DON&#39;T KNOW WHAT YOU DON&#39;T KNOW
+
+Успех <img loading="lazy" class="chatlog__emoji " alt="🌊" title="ocean" src="https://twemoji.maxcdn.com/2/svg/1f30a.svg"><img loading="lazy" class="chatlog__emoji " alt="⛰" title="⛰" src="https://twemoji.maxcdn.com/2/svg/26f0.svg">️<img loading="lazy" class="chatlog__emoji " alt="🔥" title="fire" src="https://twemoji.maxcdn.com/2/svg/1f525.svg">
+
+П.С.
+И не бъди егоист, успехът е по-голям споделен. Споделяй с познати и непознати. Покани ги в групите, състезавайте се и се развивайте заедно <img loading="lazy" class="chatlog__emoji " alt="💪" title="muscle" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg"></span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="game_die">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#127922;" src="https://twemoji.maxcdn.com/2/svg/1f3b2.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340571868774471" class="chatlog__message-container " data-message-id="896340571868774471">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:17 PM">13:17</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">-----</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340593024839741" class="chatlog__message-container " data-message-id="896340593024839741">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:17 PM">13:17</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Приемай <span class="chatlog__markdown-mention">#&#128172;-2022</span> като Мастърмайнд фийд
+- За разлика от алгоритмите на FB, IG и YouTube, където целта е да ти се смуче вниманието, Тук целта е да се зареждаш с енергия, знания и сила
+- Всеки ден пускай по нещо, което те е впечатлило и заредило с енергия. Победи и резултати. Качествени въпроси
+- Отговаряй с мнение и съвети под други постове <img loading="lazy" class="chatlog__emoji " alt="💪" title="muscle" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg"> 
+- Участвай и следи за срещите на живо и онлайн
+- Представи се и се запознай с другите в <span class="chatlog__markdown-mention">#&#127922;-players-bio</span>
+- Най-важните постове - <span class="chatlog__markdown-mention">#&#129716;start-here</span></span>
+
+                            <span class="chatlog__edited-timestamp" title="20-Jan-22 10:19 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340617448267776" class="chatlog__message-container " data-message-id="896340617448267776">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:17 PM">13:17</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">-----</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-896340654857289768" class="chatlog__message-container " data-message-id="896340654857289768">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="09-Oct-21 01:17 PM">13:17</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Как се ползва този Discord сървър:
+- Свалете си мобилното приложение
+Android - <a href="https://play.google.com/store/apps/details?id=com.discord">https://play.google.com/store/apps/details?id=com.discord</a>
+iOS - <a href="https://apps.apple.com/us/app/discord-chat-for-games/id985746746">https://apps.apple.com/us/app/discord-chat-for-games/id985746746</a>
+PC - <a href="https://discord.com/download">https://discord.com/download</a>
+
+Отляво са каналите - списък на всички канали и категории има и в <span class="chatlog__markdown-mention">#&#129716;start-here</span> 
+За срещи на живо и онлайн - <span class="chatlog__markdown-mention">#&#127922;-players-bio</span> 
+
+С задържане върху канал или категория -&gt; MUTE, за да получаваш нотификации само за каквото ти е интересно.
+
+Хаштаг за насочване към канал. Пример - <span class="chatlog__markdown-mention">#&#129716;start-here</span> 
+Кльомба за Mention на някой или роля. Пример - <span class="chatlog__markdown-mention">@everyone</span> <span class="chatlog__markdown-mention" style="">@seeders</span> 
+Задържане на Message -&gt; Reply за създаване на история от отговори
+Покриване на изискванията за следващото ниво и отключване на нови канали или плащане за продукт, ментор или канал</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 11 message(s)</div>
+</div>
+
+</body>
+
+</html>

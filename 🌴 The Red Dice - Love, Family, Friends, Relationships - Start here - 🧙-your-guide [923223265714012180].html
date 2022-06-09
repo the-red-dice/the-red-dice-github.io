@@ -1,0 +1,2318 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>&#127796; The Red Dice - Love, Family, Friends, Relationships - &#129497;-your-guide</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-family: Whitney;
+            font-weight: 300;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-family: Whitney;
+            font-weight: 400;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-family: Whitney;
+            font-weight: 500;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-family: Whitney;
+            font-weight: 600;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-family: Whitney;
+            font-weight: 700;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #23262a;
+            font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #0068e0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+            image-rendering: high-quality;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .preamble {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            max-width: 100%;
+            padding: 1rem;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 1rem;
+        }
+
+        .preamble__entry {
+            margin-bottom: 0.15rem;
+            color: #2f3136;
+            font-size: 1.4rem;
+        }
+
+        .preamble__entry--small {
+            font-size: 1rem;
+        }
+
+        .chatlog {
+            padding: 1rem 0;
+            width: 100%;
+            border-top: 1px solid #eceeef;
+            border-bottom: 1px solid #eceeef;
+        }
+
+        .chatlog__message-group {
+            margin-bottom: 1rem;
+        }
+
+        .chatlog__message-container {
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message-container--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message-container--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__message {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            padding: 0.15rem 0;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message:hover {
+            background-color: #fafafa;
+        }
+
+        .chatlog__message:hover .chatlog__short-timestamp {
+            display: block;
+        }
+
+        .chatlog__message-aside {
+            grid-column: 1;
+            width: 72px;
+            padding: 0.15rem 0.15rem 0 0.15rem;
+            text-align: center;
+        }
+
+        .chatlog__reference-symbol {
+            height: 10px;
+            margin: 6px 4px 4px 36px;
+            border-left: 2px solid #c7ccd1;
+            border-top: 2px solid #c7ccd1;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .chatlog__short-timestamp {
+            display: none;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message-primary {
+            grid-column: 2;
+            min-width: 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            margin-bottom: 0.15rem;
+            align-items: center;
+            color: #5f5f60;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-avatar {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__reference-author {
+            margin-right: 0.3rem;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link .hljs {
+            display: inline;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-link:hover *:not(.chatlog__markdown-spoiler) {
+            color: inherit;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__header {
+            margin-bottom: 0.1rem;
+        }
+
+        .chatlog__author {
+            font-weight: 600;
+            color: #2f3136;
+        }
+
+        .chatlog__bot-label {
+            position: relative;
+            top: -0.1rem;
+            margin-left: 0.3rem;
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__content {
+            padding-right: 1rem;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__attachment {
+            position: relative;
+            width: fit-content;
+            margin-top: 0.3rem;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 999;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #dcddde;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05rem;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            max-width: 520px;
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #ebedef;
+            border-radius: 3px;
+            background-color: #f2f3f5;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3rem;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25rem;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: rgba(227, 229, 232, 1);
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.6rem;
+            border: 1px solid rgba(204, 204, 204, 0.3);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: rgba(249, 249, 249, 0.3);
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author-container {
+            display: flex;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author {
+            color: #4f545c;
+            font-size: 0.875rem;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__embed-author-link {
+            color: #4f545c;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.5rem;
+            color: #4f545c;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-description {
+            color: #2e3338;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5rem;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6rem;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 50px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2rem;
+            color: #36393e;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-field-value {
+            color: #2e3338;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            max-width: 80px;
+            max-height: 80px;
+            margin-left: 1.2rem;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6rem;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-footer-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.2rem;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            margin: 0.35rem 0.1rem 0.1rem 0;
+            padding: 0.125rem 0.375rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background-color: #f2f3f5;
+            align-items: center;
+        }
+
+        .chatlog__reaction:hover {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35rem;
+            color: #4f5660;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #2e3338;
+        }
+
+        .chatlog__markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .chatlog__markdown-preserve {
+            white-space: pre-wrap;
+        }
+
+        .chatlog__markdown-spoiler {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-spoiler--hidden {
+            cursor: pointer;
+            background-color: #b9bbbe;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-spoiler--hidden:hover {
+            background-color: rgba(185, 187, 190, 0.8);
+        }
+
+        .chatlog__markdown-spoiler--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-quote {
+            display: flex;
+            margin: 0.05rem 0;
+        }
+
+        .chatlog__markdown-quote-border {
+            margin-right: 0.5rem;
+            border: 2px solid #c7ccd1;
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-pre {
+            background-color: #f9f9f9;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .chatlog__markdown-pre--multiline {
+            margin-top: 0.25rem;
+            padding: 0.5rem;
+            border: 2px solid #f3f3f3;
+            border-radius: 5px;
+            color: #657b83;
+        }
+
+        .chatlog__markdown-pre--multiline.hljs {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .chatlog__markdown-pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__markdown-mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(88, 101, 242, .15);
+            color: #505cdc;
+            font-weight: 500;
+        }
+
+        .chatlog__markdown-mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .chatlog__markdown-timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #5e6772;
+        }
+
+        .chatlog__emoji {
+            width: 1.325rem;
+            height: 1.325rem;
+            margin: 0 0.06rem;
+            vertical-align: -0.4rem;
+        }
+
+        .chatlog__emoji--small {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .chatlog__emoji--large {
+            width: 2.8rem;
+            height: 2.8rem;
+        }
+
+        .postamble {
+            padding: 1.25rem;
+        }
+
+        .postamble__entry {
+            color: #2f3136;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__markdown-pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('chatlog__message-container-' + id);
+            if (!element)
+                return;
+
+            event.preventDefault();
+            element.classList.add('chatlog__message-container--highlighted');
+
+            window.scrollTo({
+                top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                behavior: 'smooth'
+            });
+
+            window.setTimeout(function() {
+                element.classList.remove('chatlog__message-container--highlighted');
+            }, 2000);
+        }
+
+        function showSpoiler(event, element) {
+            if (!element)
+                return;
+
+            if (element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+
+            if (element.classList.contains('chatlog__markdown-spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__markdown-spoiler--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="attachment-icon" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z"/>
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z"/>
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z"/>
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z"/>
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/868058023342526464/d3242e5692ba2207349c68dbeab2bea7.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">&#127796; The Red Dice - Love, Family, Friends, Relationships</div>
+        <div class="preamble__entry">Start here / &#129497;-your-guide</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-923223424212537395" class="chatlog__message-container chatlog__message-container--pinned" data-message-id="923223424212537395">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="v___#6026" data-user-id="549866036422246400">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">22-Dec-21 04:40 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention">@everyone</span> От този канал започва твоят път. Отговаряйки на въпросите тук ще се отключат канали, където да срещнеш хора, подобни на теб, за да се развивате заедно по пътя</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923223437038735450" class="chatlog__message-container " data-message-id="923223437038735450">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:40 PM">16:40</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">-----</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923223997456457739" class="chatlog__message-container " data-message-id="923223997456457739">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:42 PM">16:42</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">От връзките с жените искам:
+1 - Ротация (няколко жени само за секс)
+2 - Връзка
+3 - Семейство и деца
+4 - Харем (семейство с няколко жени)</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">48</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">38</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">15</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction" title="laughing">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128518;" src="https://twemoji.maxcdn.com/2/svg/1f606.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction" title="rofl">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#129315;" src="https://twemoji.maxcdn.com/2/svg/1f923.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923224578904457267" class="chatlog__message-container " data-message-id="923224578904457267">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:44 PM">16:44</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Предпочитам да се запознавам с жени:
+1 - Instagram/Facebook
+2 - Dating apps
+3 - На живо</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">22</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">24</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">66</span>
+                            </div>
+                            <div class="chatlog__reaction" title="laughing">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128518;" src="https://twemoji.maxcdn.com/2/svg/1f606.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923224981276598322" class="chatlog__message-container " data-message-id="923224981276598322">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:46 PM">16:46</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">На живо предпочитам да се запознавам чрез:
+1 - Day game
+2 - Хобита и социални кръгове
+3 - Барове и дискотеки</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">33</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">51</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">20</span>
+                            </div>
+                            <div class="chatlog__reaction" title="laughing">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128518;" src="https://twemoji.maxcdn.com/2/svg/1f606.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923225651408953354" class="chatlog__message-container " data-message-id="923225651408953354">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:49 PM">16:49</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Подходът ми в съблазняването е:
+1 - Статус базиран, пасивен, те да ме гонят
+2 - Социални и чат умения, активен, съблазняване</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">35</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">49</span>
+                            </div>
+                            <div class="chatlog__reaction" title="laughing">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128518;" src="https://twemoji.maxcdn.com/2/svg/1f606.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923226055634976838" class="chatlog__message-container " data-message-id="923226055634976838">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:50 PM">16:50</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Успехите ми до момента в секс с брой жени:
+1 - 0 жени
+2 - 1-10 жени
+3 - 10-50 жени
+4 - 50+ жени</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">43</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">19</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="laughing">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128518;" src="https://twemoji.maxcdn.com/2/svg/1f606.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923226830104842340" class="chatlog__message-container " data-message-id="923226830104842340">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:53 PM">16:53</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Опитът ми във връзки (най-дълга връзка):
+1 - Под 1 месец
+2 - 1-6 месеца
+3 - 1-4 години
+4 - 4+ години</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">19</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">21</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">16</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923227181113561110" class="chatlog__message-container " data-message-id="923227181113561110">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:55 PM">16:55</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Брой връзки над 1 година:
+1 - 1
+2 - 2
+3 - 3
+4- 3+</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">30</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">18</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923227483493503026" class="chatlog__message-container " data-message-id="923227483493503026">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:56 PM">16:56</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Аз съм на:
+1 - 10-18 години
+2 - 18-22 години
+3 - 22-30 години
+4 - 30-40 години
+5 - 40+ години</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">15</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">31</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">22</span>
+                            </div>
+                            <div class="chatlog__reaction" title="five">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="5️⃣" src="https://twemoji.maxcdn.com/2/svg/35-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923228143387541547" class="chatlog__message-container " data-message-id="923228143387541547">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 04:59 PM">16:59</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Аз съм:
+1 - Ученик
+2 - Студент
+3 - Работещ в офис
+4 - Работещ в услуги (запознанства с много нови хора)
+5 - Работещ от вкъщи
+6 - Собствен бизнес/фрийланс</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">13</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">17</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">13</span>
+                            </div>
+                            <div class="chatlog__reaction" title="five">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="5️⃣" src="https://twemoji.maxcdn.com/2/svg/35-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">21</span>
+                            </div>
+                            <div class="chatlog__reaction" title="six">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="6️⃣" src="https://twemoji.maxcdn.com/2/svg/36-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">15</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923229114968723517" class="chatlog__message-container " data-message-id="923229114968723517">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:02 PM">17:02</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Семейно положение:
+1 - Имам Брак
+2 - Имам Деца
+3 - Имам Развод
+4 - Неангажиран</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">65</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923230288404951121" class="chatlog__message-container " data-message-id="923230288404951121">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:07 PM">17:07</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Стандарт на живот:
+1 - Живея със съквартирант
+2 - Живея сам на квартира
+3 - Имам собствено жилище
+4 - Имам собствен автомобил
+5 - Над 3 хил лв месечно за харчене
+6 - Социален кръг/хобита от над 50 човека/седмично
+7 - Фитнес/друг спорт с над 1000ккал на час
+8 - Гъвкаво работно време и почивни дни</span>
+
+                            <span class="chatlog__edited-timestamp" title="25-Dec-21 01:05 PM">(edited)</span>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">15</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">27</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">37</span>
+                            </div>
+                            <div class="chatlog__reaction" title="five">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="5️⃣" src="https://twemoji.maxcdn.com/2/svg/35-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction" title="six">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="6️⃣" src="https://twemoji.maxcdn.com/2/svg/36-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction" title="seven">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="7️⃣" src="https://twemoji.maxcdn.com/2/svg/37-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">27</span>
+                            </div>
+                            <div class="chatlog__reaction" title="eight">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="8️⃣" src="https://twemoji.maxcdn.com/2/svg/38-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">33</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923231202155040798" class="chatlog__message-container " data-message-id="923231202155040798">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:11 PM">17:11</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Искам да се подобря в:
+1 - Заговаряне/чат -&gt; Среща
+2 - Среща -&gt; Секс
+3 - Секс -&gt; Връзка/ротация/харем по мой вкус</span>
+
+                            <span class="chatlog__edited-timestamp" title="23-Dec-21 03:53 PM">(edited)</span>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">51</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">39</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">32</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923232434177314817" class="chatlog__message-container " data-message-id="923232434177314817">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:16 PM">17:16</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Предпочитана жена:
+1 - Тиха и послушна малка/вярна
+2 - Опитна и неангажираща/играч
+3 - Обвързана/MILF/да съм любовник</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">52</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">36</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923233540743778304" class="chatlog__message-container " data-message-id="923233540743778304">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:20 PM">17:20</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Колко съм бил нараняван през годините:
+1 - Изневяра
+2 - Зарязване
+3 - Sugar daddy/Red Pill/Брак/манипулация за provider без много секс
+4 - Cuckold/отглеждане на чуждо дете
+5 - Никога, нищо. Аз съм G</span>
+
+                            <span class="chatlog__edited-timestamp" title="29-Dec-21 11:13 AM">(edited)</span>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">19</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">35</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction" title="five">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="5️⃣" src="https://twemoji.maxcdn.com/2/svg/35-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">23</span>
+                            </div>
+                            <div class="chatlog__reaction" title="six">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="6️⃣" src="https://twemoji.maxcdn.com/2/svg/36-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923234821386416238" class="chatlog__message-container " data-message-id="923234821386416238">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:25 PM">17:25</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Разни предпочитания в жените:
+1 - Teen
+2 - MILF
+3 - Руса
+4 - Черна
+5 - Гърди
+6 - Дупе
+7 - Крака
+8 - Аромат
+9 - Лице</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">37</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">19</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">28</span>
+                            </div>
+                            <div class="chatlog__reaction" title="four">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="4️⃣" src="https://twemoji.maxcdn.com/2/svg/34-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">26</span>
+                            </div>
+                            <div class="chatlog__reaction" title="five">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="5️⃣" src="https://twemoji.maxcdn.com/2/svg/35-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">31</span>
+                            </div>
+                            <div class="chatlog__reaction" title="six">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="6️⃣" src="https://twemoji.maxcdn.com/2/svg/36-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">49</span>
+                            </div>
+                            <div class="chatlog__reaction" title="seven">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="7️⃣" src="https://twemoji.maxcdn.com/2/svg/37-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">23</span>
+                            </div>
+                            <div class="chatlog__reaction" title="eight">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="8️⃣" src="https://twemoji.maxcdn.com/2/svg/38-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">18</span>
+                            </div>
+                            <div class="chatlog__reaction" title="nine">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="9️⃣" src="https://twemoji.maxcdn.com/2/svg/39-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">52</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923235373361025114" class="chatlog__message-container " data-message-id="923235373361025114">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:27 PM">17:27</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Колко време дневно отделям за развитие във връзките:
+1 - Под 1 час
+2 - 1-4 часа
+3 - 4-8 часа</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">56</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923235921229381642" class="chatlog__message-container " data-message-id="923235921229381642">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:29 PM">17:29</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Зодия:
+<img loading="lazy" class="chatlog__emoji " alt="♈" title="aries" src="https://twemoji.maxcdn.com/2/svg/2648.svg"> - Овен <img loading="lazy" class="chatlog__emoji " alt="♉" title="taurus" src="https://twemoji.maxcdn.com/2/svg/2649.svg"> - Телец <img loading="lazy" class="chatlog__emoji " alt="♊" title="gemini" src="https://twemoji.maxcdn.com/2/svg/264a.svg"> - Близнаци <img loading="lazy" class="chatlog__emoji " alt="♋" title="cancer" src="https://twemoji.maxcdn.com/2/svg/264b.svg"> - Рак
+<img loading="lazy" class="chatlog__emoji " alt="♌" title="leo" src="https://twemoji.maxcdn.com/2/svg/264c.svg"> - Лъв <img loading="lazy" class="chatlog__emoji " alt="♍" title="virgo" src="https://twemoji.maxcdn.com/2/svg/264d.svg"> - Дева <img loading="lazy" class="chatlog__emoji " alt="♎" title="libra" src="https://twemoji.maxcdn.com/2/svg/264e.svg"> - Везни <img loading="lazy" class="chatlog__emoji " alt="♏" title="scorpius" src="https://twemoji.maxcdn.com/2/svg/264f.svg"> - Скорпион
+<img loading="lazy" class="chatlog__emoji " alt="♐" title="sagittarius" src="https://twemoji.maxcdn.com/2/svg/2650.svg"> - Стрелец <img loading="lazy" class="chatlog__emoji " alt="♑" title="capricorn" src="https://twemoji.maxcdn.com/2/svg/2651.svg"> - Козирог <img loading="lazy" class="chatlog__emoji " alt="♒" title="aquarius" src="https://twemoji.maxcdn.com/2/svg/2652.svg"> - Водолей <img loading="lazy" class="chatlog__emoji " alt="♓" title="pisces" src="https://twemoji.maxcdn.com/2/svg/2653.svg"> - Риби</span>
+
+                            <span class="chatlog__edited-timestamp" title="22-Dec-21 05:31 PM">(edited)</span>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="aries">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♈" src="https://twemoji.maxcdn.com/2/svg/2648.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction" title="taurus">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♉" src="https://twemoji.maxcdn.com/2/svg/2649.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction" title="gemini">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♊" src="https://twemoji.maxcdn.com/2/svg/264a.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction" title="cancer">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♋" src="https://twemoji.maxcdn.com/2/svg/264b.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction" title="leo">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♌" src="https://twemoji.maxcdn.com/2/svg/264c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction" title="virgo">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♍" src="https://twemoji.maxcdn.com/2/svg/264d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction" title="libra">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♎" src="https://twemoji.maxcdn.com/2/svg/264e.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction" title="scorpius">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♏" src="https://twemoji.maxcdn.com/2/svg/264f.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction" title="sagittarius">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♐" src="https://twemoji.maxcdn.com/2/svg/2650.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                            <div class="chatlog__reaction" title="capricorn">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♑" src="https://twemoji.maxcdn.com/2/svg/2651.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction" title="aquarius">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♒" src="https://twemoji.maxcdn.com/2/svg/2652.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction" title="pisces">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="♓" src="https://twemoji.maxcdn.com/2/svg/2653.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923236968064761856" class="chatlog__message-container " data-message-id="923236968064761856">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:34 PM">17:34</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Попълнено <span class="chatlog__markdown-mention">#&#127922;-players-bio</span> 
+1 - Да
+2 - Не</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">27</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">22</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923237152433786980" class="chatlog__message-container " data-message-id="923237152433786980">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:34 PM">17:34</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Прочетено <span class="chatlog__markdown-mention">#&#129716;start-here</span> 
+1 - Да
+2 - Не</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">51</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923237380436144140" class="chatlog__message-container " data-message-id="923237380436144140">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:35 PM">17:35</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Level 10 в сървъра - <a href="https://bit.ly/the-red-dice-leaderboard">https://bit.ly/the-red-dice-leaderboard</a> (около 300 написани съобщения)
+1 - Да
+2 - Не</span>
+
+                            <span class="chatlog__edited-timestamp" title="22-Dec-21 05:37 PM">(edited)</span>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">48</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-923237896369094656" class="chatlog__message-container " data-message-id="923237896369094656">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="22-Dec-21 05:37 PM">17:37</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Поканени хора в сървъра <span class="chatlog__markdown-mention">#&#128226;-how-to-invite</span> 
+1 - 0
+2 - 1-10
+3 - 10+</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="one">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="1️⃣" src="https://twemoji.maxcdn.com/2/svg/31-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">42</span>
+                            </div>
+                            <div class="chatlog__reaction" title="two">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="2️⃣" src="https://twemoji.maxcdn.com/2/svg/32-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                            <div class="chatlog__reaction" title="three">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="3️⃣" src="https://twemoji.maxcdn.com/2/svg/33-20e3.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-923239035139416065" class="chatlog__message-container " data-message-id="923239035139416065">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <div class="chatlog__reference-unknown">
+                                    Original message was deleted or could not be loaded.
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="v___#6026" data-user-id="549866036422246400">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">22-Dec-21 05:42 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Pinned a message.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-931965402131611728" class="chatlog__message-container " data-message-id="931965402131611728">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="v___#6026" data-user-id="549866036422246400">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">15-Jan-22 07:37 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ако този безплатен сървър ви е полезен и искате да ни подкрепите:
+- Достъп до Платено съдържание, стратегии и методи
+- Само най-доброто и синтезирано съдържание от сървъра
+За <span class="chatlog__markdown-mention">#&#128178;9-for-1-month-access</span> и на <a href="https://onlyfans.com/thereddice">https://onlyfans.com/thereddice</a> <img loading="lazy" class="chatlog__emoji " alt="💪" title="muscle" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg"></span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="muscle">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128170;" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction" title="fire">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128293;" src="https://twemoji.maxcdn.com/2/svg/1f525.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-933752675168825414" class="chatlog__message-container " data-message-id="933752675168825414">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="v___#6026" data-user-id="549866036422246400">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">20-Jan-22 05:59 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Нека всеки който отговори на въпросите да напише +1 тук. Категоризацията е на ръка и може да отнеме от няколко часа до няколко дни. След това ще получите достъп до различни стаи в <span class="chatlog__markdown-mention">#❓-пътища</span></span>
+
+                            <span class="chatlog__edited-timestamp" title="20-Jan-22 06:01 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-933752837282889789" class="chatlog__message-container " data-message-id="933752837282889789">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="20-Jan-22 06:00 PM">18:00</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">+1</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="crown">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128081;" src="https://twemoji.maxcdn.com/2/svg/1f451.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-956453644713226250" class="chatlog__message-container " data-message-id="956453644713226250">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/708096305477451846/3266b60c6530ff70b14b0c583f0ae868.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Reaction Roles#5521" data-user-id="708096305477451846">Reaction Roles</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">24-Mar-22 09:25 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Достъп до <span class="chatlog__markdown-mention">#&#128138;-red-pill</span></span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_check_mark">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">54</span>
+                            </div>
+                            <div class="chatlog__reaction" title="x">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="❌" src="https://twemoji.maxcdn.com/2/svg/274c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-956453796186308608" class="chatlog__message-container " data-message-id="956453796186308608">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="24-Mar-22 09:25 AM">09:25</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Достъп до <span class="chatlog__markdown-mention">#&#129498;-online-dating</span></span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_check_mark">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">54</span>
+                            </div>
+                            <div class="chatlog__reaction" title="x">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="❌" src="https://twemoji.maxcdn.com/2/svg/274c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-956453980404342784" class="chatlog__message-container " data-message-id="956453980404342784">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="24-Mar-22 09:26 AM">09:26</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Достъп до <span class="chatlog__markdown-mention">#&#129502;-offline-dating</span></span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_check_mark">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">54</span>
+                            </div>
+                            <div class="chatlog__reaction" title="x">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="❌" src="https://twemoji.maxcdn.com/2/svg/274c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-956454140689653800" class="chatlog__message-container " data-message-id="956454140689653800">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="24-Mar-22 09:27 AM">09:27</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Достъп до <span class="chatlog__markdown-mention">#&#128170;-support-network</span></span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_check_mark">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">49</span>
+                            </div>
+                            <div class="chatlog__reaction" title="x">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="❌" src="https://twemoji.maxcdn.com/2/svg/274c.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-956454241587826688" class="chatlog__message-container " data-message-id="956454241587826688">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="v___#6026" data-user-id="549866036422246400">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">24-Mar-22 09:27 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Вече <span class="chatlog__markdown-mention" title="Reaction Roles#5521">@Reaction Roles</span> категоризира автоматично <img loading="lazy" class="chatlog__emoji " alt="💪" title="muscle" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg"> <img loading="lazy" class="chatlog__emoji " alt="🔥" title="fire" src="https://twemoji.maxcdn.com/2/svg/1f525.svg"></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-956548623246696499" class="chatlog__message-container " data-message-id="956548623246696499">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Deleted User#0000" data-user-id="456226577798135808">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">24-Mar-22 03:42 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Presko G#7552">@Presko G</span>  е тук трябва да цъкнеш зелените тикове по-горе и след това би трябвало да ти излезне online dating канала</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-956569955829174272" class="chatlog__message-container " data-message-id="956569955829174272">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/798171790937423913/e06dc3eba7a9965a9f01b06aeecd2b4d.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Presko G#7552" data-user-id="798171790937423913">Presko G</span>
+
+
+                        <span class="chatlog__timestamp">24-Mar-22 05:07 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Стана</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-978800216960540712" class="chatlog__message-container " data-message-id="978800216960540712">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/340219526929186818/04a9dee3424b95ded06c368da92ffe02.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Soilworker#0298" data-user-id="340219526929186818">Soilworker</span>
+
+
+                        <span class="chatlog__timestamp">25-May-22 02:22 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">+1</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-978960518624714822" class="chatlog__message-container " data-message-id="978960518624714822">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/340219526929186818/04a9dee3424b95ded06c368da92ffe02.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+                                <div class="chatlog__reference-author" style="" title="v___#6026">Deleted User</div>
+                                <div class="chatlog__reference-content">
+                                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;956454241587826688&#39;)">
+Вече <span class="chatlog__markdown-mention" title="Reaction Roles#5521">@Reaction Roles</span> категоризира автоматично <img loading="lazy" class="chatlog__emoji " alt="💪" title="muscle" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg"> <img loading="lazy" class="chatlog__emoji " alt="🔥" title="fire" src="https://twemoji.maxcdn.com/2/svg/1f525.svg">                                    </span>
+
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Soilworker#0298" data-user-id="340219526929186818">Soilworker</span>
+
+
+                        <span class="chatlog__timestamp">25-May-22 12:59 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Здрасти, попълних всички въпроси, но все още нямам никакви нови стаи в   ❓-пътища</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-978969007208169533" class="chatlog__message-container " data-message-id="978969007208169533">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="v___#6026" data-user-id="549866036422246400">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">25-May-22 01:33 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">готово</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="metal">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#129304;" src="https://twemoji.maxcdn.com/2/svg/1f918.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-979248247711342672" class="chatlog__message-container " data-message-id="979248247711342672">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Rocky11#0903" data-user-id="919200278857789521">Rocky11</span>
+
+
+                        <span class="chatlog__timestamp">26-May-22 08:02 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Здрасти , и аз нямам достъп до стаите в пътища , след като съм попълнил въпросите  ? Успешен ден .</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-979291708309245962" class="chatlog__message-container " data-message-id="979291708309245962">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="v___#6026" data-user-id="549866036422246400">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">26-May-22 10:55 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">готово</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-979313393200681030" class="chatlog__message-container " data-message-id="979313393200681030">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Rocky11#0903" data-user-id="919200278857789521">Rocky11</span>
+
+
+                        <span class="chatlog__timestamp">26-May-22 12:21 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Благодаря . Успешен ден .</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-983135654261194793" class="chatlog__message-container " data-message-id="983135654261194793">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/284758734125793291/b64bda0854db8601f9a0acde72f02bf6.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="The Shadows#2636" data-user-id="284758734125793291">The Shadows</span>
+
+
+                        <span class="chatlog__timestamp">06-Jun-22 01:30 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">+1</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 41 message(s)</div>
+</div>
+
+</body>
+
+</html>

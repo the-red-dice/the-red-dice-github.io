@@ -1,0 +1,2082 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>&#127796; The Red Dice - Love, Family, Friends, Relationships - scorpion-room</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-family: Whitney;
+            font-weight: 300;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-family: Whitney;
+            font-weight: 400;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-family: Whitney;
+            font-weight: 500;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-family: Whitney;
+            font-weight: 600;
+        }
+
+        @font-face {
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-family: Whitney;
+            font-weight: 700;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #23262a;
+            font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #0068e0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+            image-rendering: high-quality;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .preamble {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            max-width: 100%;
+            padding: 1rem;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 1rem;
+        }
+
+        .preamble__entry {
+            margin-bottom: 0.15rem;
+            color: #2f3136;
+            font-size: 1.4rem;
+        }
+
+        .preamble__entry--small {
+            font-size: 1rem;
+        }
+
+        .chatlog {
+            padding: 1rem 0;
+            width: 100%;
+            border-top: 1px solid #eceeef;
+            border-bottom: 1px solid #eceeef;
+        }
+
+        .chatlog__message-group {
+            margin-bottom: 1rem;
+        }
+
+        .chatlog__message-container {
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message-container--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message-container--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__message {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            padding: 0.15rem 0;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message:hover {
+            background-color: #fafafa;
+        }
+
+        .chatlog__message:hover .chatlog__short-timestamp {
+            display: block;
+        }
+
+        .chatlog__message-aside {
+            grid-column: 1;
+            width: 72px;
+            padding: 0.15rem 0.15rem 0 0.15rem;
+            text-align: center;
+        }
+
+        .chatlog__reference-symbol {
+            height: 10px;
+            margin: 6px 4px 4px 36px;
+            border-left: 2px solid #c7ccd1;
+            border-top: 2px solid #c7ccd1;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .chatlog__short-timestamp {
+            display: none;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message-primary {
+            grid-column: 2;
+            min-width: 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            margin-bottom: 0.15rem;
+            align-items: center;
+            color: #5f5f60;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-avatar {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__reference-author {
+            margin-right: 0.3rem;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link .hljs {
+            display: inline;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-link:hover *:not(.chatlog__markdown-spoiler) {
+            color: inherit;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__header {
+            margin-bottom: 0.1rem;
+        }
+
+        .chatlog__author {
+            font-weight: 600;
+            color: #2f3136;
+        }
+
+        .chatlog__bot-label {
+            position: relative;
+            top: -0.1rem;
+            margin-left: 0.3rem;
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__content {
+            padding-right: 1rem;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15rem;
+            color: #5e6772;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__attachment {
+            position: relative;
+            width: fit-content;
+            margin-top: 0.3rem;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 999;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #dcddde;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05rem;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            max-width: 520px;
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #ebedef;
+            border-radius: 3px;
+            background-color: #f2f3f5;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3rem;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25rem;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: rgba(227, 229, 232, 1);
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.6rem;
+            border: 1px solid rgba(204, 204, 204, 0.3);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: rgba(249, 249, 249, 0.3);
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author-container {
+            display: flex;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author {
+            color: #4f545c;
+            font-size: 0.875rem;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__embed-author-link {
+            color: #4f545c;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.5rem;
+            color: #4f545c;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-description {
+            color: #2e3338;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5rem;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6rem;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 50px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2rem;
+            color: #36393e;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-field-value {
+            color: #2e3338;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            max-width: 80px;
+            max-height: 80px;
+            margin-left: 1.2rem;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6rem;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-footer-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.2rem;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            margin: 0.35rem 0.1rem 0.1rem 0;
+            padding: 0.125rem 0.375rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background-color: #f2f3f5;
+            align-items: center;
+        }
+
+        .chatlog__reaction:hover {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35rem;
+            color: #4f5660;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #2e3338;
+        }
+
+        .chatlog__markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .chatlog__markdown-preserve {
+            white-space: pre-wrap;
+        }
+
+        .chatlog__markdown-spoiler {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-spoiler--hidden {
+            cursor: pointer;
+            background-color: #b9bbbe;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-spoiler--hidden:hover {
+            background-color: rgba(185, 187, 190, 0.8);
+        }
+
+        .chatlog__markdown-spoiler--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-quote {
+            display: flex;
+            margin: 0.05rem 0;
+        }
+
+        .chatlog__markdown-quote-border {
+            margin-right: 0.5rem;
+            border: 2px solid #c7ccd1;
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-pre {
+            background-color: #f9f9f9;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .chatlog__markdown-pre--multiline {
+            margin-top: 0.25rem;
+            padding: 0.5rem;
+            border: 2px solid #f3f3f3;
+            border-radius: 5px;
+            color: #657b83;
+        }
+
+        .chatlog__markdown-pre--multiline.hljs {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .chatlog__markdown-pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__markdown-mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(88, 101, 242, .15);
+            color: #505cdc;
+            font-weight: 500;
+        }
+
+        .chatlog__markdown-mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .chatlog__markdown-timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #5e6772;
+        }
+
+        .chatlog__emoji {
+            width: 1.325rem;
+            height: 1.325rem;
+            margin: 0 0.06rem;
+            vertical-align: -0.4rem;
+        }
+
+        .chatlog__emoji--small {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .chatlog__emoji--large {
+            width: 2.8rem;
+            height: 2.8rem;
+        }
+
+        .postamble {
+            padding: 1.25rem;
+        }
+
+        .postamble__entry {
+            color: #2f3136;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__markdown-pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('chatlog__message-container-' + id);
+            if (!element)
+                return;
+
+            event.preventDefault();
+            element.classList.add('chatlog__message-container--highlighted');
+
+            window.scrollTo({
+                top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                behavior: 'smooth'
+            });
+
+            window.setTimeout(function() {
+                element.classList.remove('chatlog__message-container--highlighted');
+            }, 2000);
+        }
+
+        function showSpoiler(event, element) {
+            if (!element)
+                return;
+
+            if (element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+
+            if (element.classList.contains('chatlog__markdown-spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__markdown-spoiler--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="attachment-icon" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z"/>
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z"/>
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z"/>
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z"/>
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/868058023342526464/d3242e5692ba2207349c68dbeab2bea7.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">&#127796; The Red Dice - Love, Family, Friends, Relationships</div>
+        <div class="preamble__entry">Member rooms / scorpion-room</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-974598749710065674" class="chatlog__message-container " data-message-id="974598749710065674">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">13-May-22 12:07 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">основна тема за обсъждане: детайли които са ви интересно от тази история: 
+<a href="https://docs.google.com/document/d/1RhT1tgRutoZmmTxc51TS6VLqh1H-hCGbJIW6zGS0-H0/edit#">https://docs.google.com/document/d/1RhT1tgRutoZmmTxc51TS6VLqh1H-hCGbJIW6zGS0-H0/edit#</a></span>
+
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://docs.google.com/document/d/1RhT1tgRutoZmmTxc51TS6VLqh1H-hCGbJIW6zGS0-H0/edit">
+                                                        <div class="chatlog__markdown chatlog__markdown-preserve">Репорт от 10ти май</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="chatlog__markdown chatlog__markdown-preserve">Репорт от 10ти май Комуникация, комуникация, комуникация Предисторията Получих съобщение на стария телефон че имам ново съвпадение в тиндър и дори и имах съобщение на много редове. Мацката разказа, че сме си писали, дори сме минали успешно играта с трите въпроса и ми е обещала да се видим, обаче ...</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-2.discordapp.net/external/bwOxSfM7RAvUYUZonwyZtBdZ3MPbr8ccPFssHKaeAug/https/lh3.googleusercontent.com/sJxPaCKaeo3Y0qpm0dCWPSbCY5GmmSDf4PLmqB6Vq6OblSHNEw4dSSZEgihkvSX2T5ALBLnSGAbx3Q%3Dw1200-h630-p">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-2.discordapp.net/external/bwOxSfM7RAvUYUZonwyZtBdZ3MPbr8ccPFssHKaeAug/https/lh3.googleusercontent.com/sJxPaCKaeo3Y0qpm0dCWPSbCY5GmmSDf4PLmqB6Vq6OblSHNEw4dSSZEgihkvSX2T5ALBLnSGAbx3Q%3Dw1200-h630-p" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="crown">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128081;" src="https://twemoji.maxcdn.com/2/svg/1f451.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975076320453218374" class="chatlog__message-container " data-message-id="975076320453218374">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/224637709199605770/6981fb02246fbc19268ca235fd5b9fb0.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+                                <div class="chatlog__reference-author" style="" title="Scorpion#8959">Scorpion</div>
+                                <div class="chatlog__reference-content">
+                                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;974598749710065674&#39;)">
+основна тема за обсъждане: детайли които са ви интересно от тази история: 
+<a href="https://docs.google.com/document/d/1RhT1tgRutoZmmTxc51TS6VLqh1H-hCGbJIW6zGS0-H0/edit#">https://docs.google.com/document/d/1RhT1tgRutoZmmTxc51TS6VLqh1H-hCGbJIW6zGS0-H0/edit#</a>                                    </span>
+
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Stooge#9261" data-user-id="224637709199605770">Stooge</span>
+
+
+                        <span class="chatlog__timestamp">14-May-22 07:45 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Харесва ми стила ти на писане и колко детайлно се сещаш за всичко. Чудя се с каква мотивация правиш cum retention по време на секс? Забелязал ли си някакви ползи от no fap (освен ако нямаш пристрастяване)?</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975098867639001128" class="chatlog__message-container " data-message-id="975098867639001128">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">14-May-22 09:14 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><a href="https://vm.tiktok.com/ZMLcSBnAP/?k=1">https://vm.tiktok.com/ZMLcSBnAP/?k=1</a>
+The kiss test</span>
+
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(254, 44, 85, 255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://vm.tiktok.com/ZMLcSBnAP/?k=1">
+                                                        <div class="chatlog__markdown chatlog__markdown-preserve">Jason Capital on TikTok</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="chatlog__markdown chatlog__markdown-preserve">We want our marketing to be this useful</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-2.discordapp.net/external/VYrrIt1pIPG_TiX98gV79JJ1Rw1hlg-hhaBXtSmZsUw/%3Fx-expires%3D1653156000%26x-signature%3DqXLlM6o8LEzw7csUwm3oPlub1H4%253D/https/p16-sign-va.tiktokcdn.com/tos-maliva-p-0068/b5bb5fca5f4e4e0db270ab4f7cebf48b_1609381861~tplv-ljuqg7cw6h-share-play%3A1280%3A720.jpeg">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-2.discordapp.net/external/VYrrIt1pIPG_TiX98gV79JJ1Rw1hlg-hhaBXtSmZsUw/%3Fx-expires%3D1653156000%26x-signature%3DqXLlM6o8LEzw7csUwm3oPlub1H4%253D/https/p16-sign-va.tiktokcdn.com/tos-maliva-p-0068/b5bb5fca5f4e4e0db270ab4f7cebf48b_1609381861~tplv-ljuqg7cw6h-share-play%3A1280%3A720.jpeg" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="round_pushpin">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128205;" src="https://twemoji.maxcdn.com/2/svg/1f4cd.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975099086678163557" class="chatlog__message-container " data-message-id="975099086678163557">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+                                <div class="chatlog__reference-author" style="" title="Scorpion#8959">Scorpion</div>
+                                <div class="chatlog__reference-content">
+                                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;975098867639001128&#39;)">
+<a href="https://vm.tiktok.com/ZMLcSBnAP/?k=1">https://vm.tiktok.com/ZMLcSBnAP/?k=1</a>
+The kiss test                                    </span>
+
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">14-May-22 09:15 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="v___#6026">@Deleted User</span> мога ли да имам права да закачам pin-вам съобщения</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975099809553846363" class="chatlog__message-container " data-message-id="975099809553846363">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/224637709199605770/6981fb02246fbc19268ca235fd5b9fb0.png?size=512" alt="Avatar" loading="lazy">
+                                <div class="chatlog__reference-author" style="" title="Stooge#9261">Stooge</div>
+                                <div class="chatlog__reference-content">
+                                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;975076320453218374&#39;)">
+Харесва ми стила ти на писане и колко детайлно се сещаш за всичко. Чудя се с каква мотивация правиш cum retention по време на секс? Забелязал ли си някакви ползи от no fap (освен ако нямаш пристрастяване)?                                    </span>
+
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">14-May-22 09:18 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Не правя no-fap вече, след 280 дни през 2018та после му отпуснах края. Нямам пристрастяване към nofap но напоследък като се изморя се усещам че си пускам порно за лека нощ. Карах го на автопилот 2г от към фап-ването. И тази крайност не е яка.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975101365548380200" class="chatlog__message-container " data-message-id="975101365548380200">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="14-May-22 09:24 PM">21:24</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Мотивацията ми за cum-retention ми е от гледна точка на спорт, енергия, сила и повече секс. 
+Наистина има моменти дето като свърша и не ми се гледа и на следващия ден. Така разбрах от къде идва Правете Секс, а не война. И пишока е супер мек.
+
+Второто за не-свършване е че имам повече време в секса и извличам повече удоволствие. Имам случай на 5 минутен full body orgasm, супер яки усещания в цялото тяло докато гаджето ме язди.
+А в обикновените случаи просто имам нагон желание и сила да чукам още на следващата вечер че и на същата.
+И гаджето вика, харесваш ми такъв разгонен.</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="round_pushpin">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128205;" src="https://twemoji.maxcdn.com/2/svg/1f4cd.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975102040437055558" class="chatlog__message-container " data-message-id="975102040437055558">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="14-May-22 09:27 PM">21:27</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">За детайли филма bliss <a href="https://m.imdb.com/title/tt0118742">https://m.imdb.com/title/tt0118742</a></span>
+
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://m.imdb.com/title/tt0118742">
+                                                        <div class="chatlog__markdown chatlog__markdown-preserve">Bliss (1997) - IMDb</div>
+                                                    </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="chatlog__markdown chatlog__markdown-preserve">Bliss: Directed by Lance Young. With Craig Sheffer, Sheryl Lee, Terence Stamp, Casey Siemaszko. A newly married happy couple visits a sex therapist to determine why the wife can&#39;t achieve an orgasm with her husband. This causes a horrific suppressed memory to emerge and she becomes more and more distant.</div>
+                                            </div>
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="https://images-ext-2.discordapp.net/external/fnuvjDlpfTMb2KZAqIn_70Vy76DxLQbW6KxLypB2FMk/https/m.media-amazon.com/images/M/MV5BZTQyYTdlOWMtOTM1MC00ZTRiLWEzYzQtNmFjOTFhOTJkZjI1XkEyXkFqcGdeQXVyNjMwMjk0MTQ%40._V1_FMjpg_UX1000_.jpg">
+                                                <img class="chatlog__embed-thumbnail" src="https://images-ext-2.discordapp.net/external/fnuvjDlpfTMb2KZAqIn_70Vy76DxLQbW6KxLypB2FMk/https/m.media-amazon.com/images/M/MV5BZTQyYTdlOWMtOTM1MC00ZTRiLWEzYzQtNmFjOTFhOTJkZjI1XkEyXkFqcGdeQXVyNjMwMjk0MTQ%40._V1_FMjpg_UX1000_.jpg" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975102646149066812" class="chatlog__message-container " data-message-id="975102646149066812">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="14-May-22 09:29 PM">21:29</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">А за ползи от nofap ще кача скоро стар field report който ме спечели за каузата, макар и на ден 50 от процеса.
+И nofap ми раздруса и създаде социалния живот, иначе порно и игри вкъщи и нямаш нужда от хора.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975102707415253013" class="chatlog__message-container " data-message-id="975102707415253013">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="v___#6026" data-user-id="549866036422246400">Deleted User</span>
+
+
+                        <span class="chatlog__timestamp">14-May-22 09:30 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">няма такъв пермишън</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975318113358868520" class="chatlog__message-container " data-message-id="975318113358868520">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/224637709199605770/6981fb02246fbc19268ca235fd5b9fb0.png?size=512" alt="Avatar" loading="lazy">
+                                <div class="chatlog__reference-author" style="" title="Stooge#9261">Stooge</div>
+                                <div class="chatlog__reference-content">
+                                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;975076320453218374&#39;)">
+Харесва ми стила ти на писане и колко детайлно се сещаш за всичко. Чудя се с каква мотивация правиш cum retention по време на секс? Забелязал ли си някакви ползи от no fap (освен ако нямаш пристрастяване)?                                    </span>
+
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">15-May-22 11:45 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Аа да, и edging-a ми позволява в един момент да съм превъзбуден и да мога да чукам силно и бързо без да съм близо да до свършване.
+Ако опитам в началото силно и бързо, бих свършил и разочарование за мацката. Трудно ми е да направя втори тек веднага, вече.</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975390678035083314" class="chatlog__message-container " data-message-id="975390678035083314">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">15-May-22 04:34 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><strong>Field report 16.11.2017 (very detailed for my personal needs)</strong>
+
+Oh my, oh my, the superpowers are real!
+Warning: might be triggering for some of the readers.
+
+I went to Rubik bar to give them a transparent of my out of school activity.
+There was a big company in the middle if the place.
+Once I finished my business with the owner of the bar I took a look around. There were two girls alone in the big company, talking. Both were nice, the one with the black dress and exposed shoulders were prettier. In my mind I remembered the game plan how to win the cuter, talking to the one I am less interested in.
+Never did it. I still need to learn how to overcome my approach anxiety.
+Hour later:
+I know three of the men in the big company, and one of them has a birthday. We talk.
+Then he invites me to talk more among the rest of the people.
+The birthday man asks me how big is my out-of-school organization.
+I say that we are going to Estonia and the cure girl gasps.
+Then she asks me of my name and responds with another gasp, her boyfriend has a very similar name. She is so excited that she never gave her name and I never knew it.
+Then I joke if she took the ferry to Finland and she enthusiastically tells me a short story.
+I mention Germany and that I have taken a ferry to Finland and she is overwhelmed by the coincidences. She had been in Germany too.
+Her reactions are like &quot;I can&#39;t believe this is happening. Who are you? Where have I seen you before? You look so familiar.&quot;
+Then we give cheers and she asks why no alcohol. I say that I am with the car and that I am on medications. She cheers me again and thanks me genuinely for my sincerely and openness.
+Then a woman comes to say that she is leaving and the girl asks if it is too strange that she is with her mother.</span>
+
+                            <span class="chatlog__edited-timestamp" title="15-May-22 04:39 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975390685425467462" class="chatlog__message-container " data-message-id="975390685425467462">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-May-22 04:34 PM">16:34</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">I respond that we are in an eastern country and here family is still highly valued. I say that I have been to the movies with my mother.
+She literally jumps on my neck and hugs me passionately. I feel her breasts against me.
+Then we talk about KGB and communism museums in Tallinn and about elevators that come on themselves when you open the front door.
+I mention a few inventions that we did so that one can do a phone call to the heater at home, and that a small robot can turn the coffee machine for her too. We even have a charger that shuts down after three hours of charge.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975390740769308702" class="chatlog__message-container " data-message-id="975390740769308702">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-May-22 04:34 PM">16:34</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">She asks me why do I do stuff like that.
+I answer with the question why musicians make music and why do painters paint. That is my way to create stuff and it is very rewarding your creation to work and do what needs to be done.
+She is blasted. She is impressed by the passion.
+She mentions that programmers are always attracted to her. Even in the middle of Spain, on a mountaintop, there was a programmer to come to talk to her.
+Here I remind her that she started the conversation with me.
+Now she enters an interesting state where she is confused whether she should tell me something.
+She is nervous and excited most of the time we speak and I wonder why exactly. Is it only the coincidences.
+
+It turns out she noticed me the moment I entered the bar. And I have sent electricity to the place for her.
+Around that point, I get nervous and excited too, because I realize that girl is very much into me, and I like her too!
+She asks me if I knew that she had noticed me right away.
+I am honest and say no.
+Then I wonder if, but eventually, I share a story that two years ago I entered a room to teach a girl and that other girl was immediately into me. I knew she was a year later. So yeah, that has happened before, I had no idea why and how.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975390770720829440" class="chatlog__message-container " data-message-id="975390770720829440">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-May-22 04:34 PM">16:34</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The cute girl in the bar asks me if I have sensed the electricity back then. I say no, I am sorry. It is part of me that I am not aware of. Like a fish that is not aware of the water.
+She sais yes, I have heard that and I don&#39;t understand it.
+And here comes drop in the vibe. Her glass is empty and she goes away. Because the mood had dropped, I decide not the chase her but move away too.
+
+A few minutes later she plays pool on the billiards table with a middle age man. I am kind of jealous but never mind. I have an idea what to say and to continue were we stopped if the chance be.
+I move to the pool table and watch the play. She is into the game.
+A few minutes later our eyes meet and I hold steady gaze and smile welcoming.
+Later she looks at me when I pretend not to be watching. Then I catch her look.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975390809300037682" class="chatlog__message-container " data-message-id="975390809300037682">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-May-22 04:34 PM">16:34</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The game ends and she comes to me on her own.
+I tell her that she was one attractive girl in the bar that wanted to talk to and wasn&#39;t able to approach, and I am happy to be talking with her now.
+She grabs my hand and pulls me out.
+We are in the antree of the bar hugging moving slowly. I wonder if she wants to dance or what. Apparently not.
+Over a few minutes of hugging and obvious body language, she raises her chin for the kiss.
+We kiss on the lips, and when I proceed to play with tongue she breaks the kiss but stays hugging me. We make out a few long minutes more and we talk hugged. I saw I noticed something is holding her back. And she says she is with her boyfriend.
+And I am like oh my, not again. A sexy girl is wildly into me and she is with a man. And I follow the commandment not to break existing couples.
+And we keep making out. She shares that she feels me (my boner).
+I play with my hands on her body, lost in the moment, but never too much, as there are people leaving and entering the place all the time and we are in the antree.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975390840996388874" class="chatlog__message-container " data-message-id="975390840996388874">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-May-22 04:34 PM">16:34</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">I play with her hair and pull her back. She kisses my neck and makes me breathe heavily. We are all over into a sexual foreplay and I tell her that at that point people around us would tell us to get a room. And I also tell her that I will not put her into trouble.
+She slows down and asks why then am I still there and doing that. I respond that I am enjoying the feelings and living the moment fully.
+That sparks some more confirmation for her and she continues.
+I cannot explain how she moves around and takes me with her - on the couches in front of the company hugging next to each other, then outside and there is rain beyond the end of the roof. Then back in the antree. And all the time she holds my hand, puts her hands on my body and almost kisses.
+At one point we are on the couch and she puts my hand between her thighs. This is my point where I clench my fist and muster all my strength to stop. I believe she enjoyed my struggle.
+At another point, we are making out in the antree and she says how is that happening, her little life is set up with a planned future and I appear out of nowhere, driving her crazy.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975390868863348746" class="chatlog__message-container " data-message-id="975390868863348746">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-May-22 04:35 PM">16:35</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">At another moment we are in the antree, she turns around and I hug her from behind. We have done that a few times already. This time I hold her waist and push her back forward. She bends over and her ass presses fully against my boner. I have to pull her back up and clench my fist again.
+At another moment we are in the antree and she moves steps away and looks at me. Asks me how to resist me. I crack up as I can&#39;t believe my ears. Then I thank her for the compliment and tell her that the way to resist is to be far away, not as close as now. And that she will be very proud of herself that she resisted at the end. She smiles, I think.
+That whole making out thing ends in about an hour. I had no clue of the time, all my attention was there and then, in the moment, being present, feeling with every part of my body the sensations and the warmth of that cute girl that will be gone by the end of the night.
+She asks me if it strange that we may never meet again, as we enter the bar.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975390916292513792" class="chatlog__message-container " data-message-id="975390916292513792">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-May-22 04:35 PM">16:35</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">And it is my turn to put my face in my palms, as she did every time she heard a coincidence from my part.
+I tell her that she may or may not forget about me, but if she want something to remind her of me.
+And she says enthusiastically yes.
+There is this song of Modern Talking &quot;no name, no face, no number&quot; and I am living it right now.
+I never knew your name, you were too excited and never shared it. She said really and smiled.
+
+The rest of her initial group pack up and are about to leave.
+I feel like she was willing for me to either drive her home or walk her to the taxi.
+She even changed her mind from leaving with them to stay with me in the bar, but my gesture with two separating fingers, and some words from the company made her leave.
+And she is gone.
+And everyone knew I was making out with the hot girl. The girl from the first night on 9th congratulated me and asked what was going to happen next.
+So girls definitely notice when a man is with a girl, as the book said.
+=== end of 16.11.2017 ===</span>
+
+                            <span class="chatlog__edited-timestamp" title="15-May-22 04:36 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975442809509261352" class="chatlog__message-container " data-message-id="975442809509261352">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/934053204352725062/60c738e21d4f7e3736b2dabaaab01242.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="ShaHmatisTa#1969" data-user-id="934053204352725062">ShaHmatisTa</span>
+
+
+                        <span class="chatlog__timestamp">15-May-22 08:01 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Тук ще отговоря със лека забележка, която е по-скоро насока, а не критика, а в моята стая ще са хвалбите ми, понеже искам да опиша нещо малко по-обширно.
+Единствената грешка (в твоя случай не може да се каже, че е грешка, понеже не е имало последствия), която виждам е, че си се забавил доста с ескалациите, а момичето е било във фаза &quot;комфорт&quot; още в първите часове и е била готова за по-сериозни ескалации още тогава, но ти си го карал по рапортски. По късно, ако не е чувствала нищо към теб, е можела (и е в правото си) да те шитне/резне с неща от сорта на &quot;стана късно май, трябва да си ходя; беше приятна среща, но ще тръгвам, че утре ще ставам рано; ооо, кога са минали 7-8 часа,&quot; и т.н - историята помни доста такива загубени момичета в тийн годините ми и малко след това, когато имах такъв стил да се мотам много с дълги срещи и аз като теб. Но се вижда, че твоето момиче е било силно привлечено към теб още от началото и ти е помагала и е инициирала идването у вас (доколкото разбрах). За да стои с теб момиче в продължение на 10 часа трябва много да си я грабнал, особено имайки се предвид, че си я целунал чак последните часове.</span>
+
+                            <span class="chatlog__edited-timestamp" title="20-May-22 12:49 PM">(edited)</span>
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="game_die">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#127922;" src="https://twemoji.maxcdn.com/2/svg/1f3b2.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-975442832418545676" class="chatlog__message-container " data-message-id="975442832418545676">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-May-22 08:01 PM">20:01</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Имай го предвид това - само най привлечените/разгонените/грабнатите с нещо от характера ти момичета ще се влачат с теб в продължение на 7-10 часа без да е имало дори целувка или някакви по-интимни докосвания/близост. Тоест искам да кажа, че е добре в бъдеще да съкратиш времето на срещите и да не бавиш толкова дълго нещата, защото малък процент момичета ще те следват така дълго, освен ако не са както казах по-горе привлечени силно към теб или са загорели много. Може да се получи объркващ момент, който да ти даде грешни насоки и да си кажеш: &quot;Аха, момичетата обичат да ги развеждам много напред-назад, да си говорим 5-10 часа и да изградим доверие и комфорт и после са готови да си отворят крачетата лесно&quot;. Тези, които не ти се кефят/не са привлечени силно към теб ще се отегчат по някое време (още в първите 1-2 часа на срещата) и ще си тръгнат и ще изтървеш прозореца и играта може да приключи. Мотането е много лошо, патил съм си така в ранните си години, когато играх по рапортски. Просто пробвай да изрежеш излишностите и да вмъкнеш по-важните неща/локации, които си правил с момичето, само че за 3-4 часа примерно, а не 10. Това със смяната на обстановката е силно и създава чувство, че се познавате отдавна, все едно че имате зад гърба си няколко срещи вече и сексът след това изглежда като естествено продължение.</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="game_die">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#127922;" src="https://twemoji.maxcdn.com/2/svg/1f3b2.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975444874822299678" class="chatlog__message-container " data-message-id="975444874822299678">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/934053204352725062/60c738e21d4f7e3736b2dabaaab01242.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="ShaHmatisTa#1969" data-user-id="934053204352725062">ShaHmatisTa</span>
+
+
+                        <span class="chatlog__timestamp">15-May-22 08:09 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">P.S. Тъкмо се прибирам от ЦСКА-Левски, че бях в София на мача, на 5 бири съм, освен това прочетох историята набързо и може да не съм много обективен с анализа.</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="smile">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128516;" src="https://twemoji.maxcdn.com/2/svg/1f604.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="muscle">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128170;" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-975791311770771506" class="chatlog__message-container " data-message-id="975791311770771506">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/853645074491506708/0f58760c9857bddc5db7d6e7d116c776.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/934053204352725062/60c738e21d4f7e3736b2dabaaab01242.png?size=512" alt="Avatar" loading="lazy">
+                                <div class="chatlog__reference-author" style="" title="ShaHmatisTa#1969">ShaHmatisTa</div>
+                                <div class="chatlog__reference-content">
+                                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;975442832418545676&#39;)">
+Имай го предвид това - само най привлечените/разгонените/грабнатите с нещо от характера ти момичета ще се влачат с теб в продължение на 7-10 часа без да е имало дори целувка или някакви по-интимни докосвания/близост. Тоест искам да кажа, че е добре в бъдеще да съкратиш времето на срещите и да не бавиш толкова дълго нещата, защото малък процент момичета ще те следват така дълго, освен ако не са както казах по-горе привлечени силно към теб или са загорели много. Може да се получи объркващ момент, който да ти даде грешни насоки и да си кажеш: &quot;Аха, момичетата обичат да ги развеждам много напред-назад, да си говорим 5-10 часа и да изградим доверие и комфорт и после са готови да си отворят крачетата лесно&quot;. Тези, които не ти се кефят/не са привлечени силно към теб ще се отегчат по някое време (още в първите 1-2 часа на срещата) и ще си тръгнат и ще изтървеш прозореца и играта може да приключи. Мотането е много лошо, патил съм си така в ранните си години, когато играх по рапортски. Просто пробвай да изрежеш излишностите и да вмъкнеш по-важните неща/локации, които си правил с момичето, само че за 3-4 часа примерно, а не 10. Това със смяната на обстановката е силно и създава чувство, че се познавате отдавна, все едно че имате зад гърба си няколко срещи вече и сексът след това изглежда като естествено продължение.                                    </span>
+
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ronaldo7#0062" data-user-id="853645074491506708">Ronaldo7</span>
+
+
+                        <span class="chatlog__timestamp">16-May-22 07:06 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">ммм при мен това с бавенето се явява проблем сега с едно момиче,но май ще го опиша в в offline-dating да не спамя стаята излишно</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="muscle">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128170;" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-976004266324017193" class="chatlog__message-container " data-message-id="976004266324017193">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/934053204352725062/60c738e21d4f7e3736b2dabaaab01242.png?size=512" alt="Avatar" loading="lazy">
+                                <div class="chatlog__reference-author" style="" title="ShaHmatisTa#1969">ShaHmatisTa</div>
+                                <div class="chatlog__reference-content">
+                                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;975442809509261352&#39;)">
+Тук ще отговоря със лека забележка, която е по-скоро насока, а не критика, а в моята стая ще са хвалбите ми, понеже искам да опиша нещо малко по-обширно.
+Единствената грешка (в твоя случай не може да се каже, че е грешка, понеже не е имало последствия), която виждам е, че си се забавил доста с ескалациите, а момичето е било във фаза &quot;комфорт&quot; още в първите часове и е била готова за по-сериозни ескалации още тогава, но ти си го карал по рапортски. По късно, ако не е чувствала нищо към теб, е можела (и е в правото си) да те шитне/резне с неща от сорта на &quot;стана късно май, трябва да си ходя; беше приятна среща, но ще тръгвам, че утре ще ставам рано; ооо, кога са минали 7-8 часа,&quot; и т.н - историята помни доста такива загубени момичета в тийн годините ми и малко след това, когато имах такъв стил да се мотам много с дълги срещи и аз като теб. Но се вижда, че твоето момиче е било силно привлечено към теб още от началото и ти е помагала и е инициирала идването у вас (доколкото разбрах). За да стои с теб момиче в продължение на 10 часа трябва много да си я грабнал, особено имайки се предвид, че си я целунал чак последните часове.                                    </span>
+
+                                        <span class="chatlog__reference-edited-timestamp" title="20-May-22 12:49 PM">(edited)</span>
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">17-May-22 09:12 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Валидно, признавам на два пъти че не знаех как да ескалирам, затова и излязах, за да трупам опит.</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128077;" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-976006296711073803" class="chatlog__message-container " data-message-id="976006296711073803">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                        <div class="chatlog__reference-symbol"></div>
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                        <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/934053204352725062/60c738e21d4f7e3736b2dabaaab01242.png?size=512" alt="Avatar" loading="lazy">
+                                <div class="chatlog__reference-author" style="" title="ShaHmatisTa#1969">ShaHmatisTa</div>
+                                <div class="chatlog__reference-content">
+                                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;975442832418545676&#39;)">
+Имай го предвид това - само най привлечените/разгонените/грабнатите с нещо от характера ти момичета ще се влачат с теб в продължение на 7-10 часа без да е имало дори целувка или някакви по-интимни докосвания/близост. Тоест искам да кажа, че е добре в бъдеще да съкратиш времето на срещите и да не бавиш толкова дълго нещата, защото малък процент момичета ще те следват така дълго, освен ако не са както казах по-горе привлечени силно към теб или са загорели много. Може да се получи объркващ момент, който да ти даде грешни насоки и да си кажеш: &quot;Аха, момичетата обичат да ги развеждам много напред-назад, да си говорим 5-10 часа и да изградим доверие и комфорт и после са готови да си отворят крачетата лесно&quot;. Тези, които не ти се кефят/не са привлечени силно към теб ще се отегчат по някое време (още в първите 1-2 часа на срещата) и ще си тръгнат и ще изтървеш прозореца и играта може да приключи. Мотането е много лошо, патил съм си така в ранните си години, когато играх по рапортски. Просто пробвай да изрежеш излишностите и да вмъкнеш по-важните неща/локации, които си правил с момичето, само че за 3-4 часа примерно, а не 10. Това със смяната на обстановката е силно и създава чувство, че се познавате отдавна, все едно че имате зад гърба си няколко срещи вече и сексът след това изглежда като естествено продължение.                                    </span>
+
+                                </div>
+                        </div>
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">17-May-22 09:20 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Тук идва автентичната ми страна и моят филтър ако щеш - търся най-привлечените/грабнатите от мен.
+Едната разгонена я изгоних, както написах в репорта от 2017та. Не знам дали и днес бих я отблъснал, де. Ама ако няма да е няколко пъти секса, не си струва.</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="game_die">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#127922;" src="https://twemoji.maxcdn.com/2/svg/1f3b2.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-978318858375008276" class="chatlog__message-container " data-message-id="978318858375008276">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">23-May-22 06:29 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Малко истории още, да давам материал за размисъл и добавена стойност:</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978318881372377198" class="chatlog__message-container " data-message-id="978318881372377198">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-May-22 06:29 PM">18:29</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Field report 16.11.2017 (very detailed for my personal needs)
+
+Oh my, oh my, the nofap superpowers are real! Day 58 or something like that:
+Warning: might be triggering for some of the readers.
+
+I went to Rubik bar to give them a transparent of my out of school activity.
+There was a big company in the middle if the place.
+Once I finished my business with the owner of the bar I took a look around. There were two girls alone in the big company, talking. Both were nice, the one with the black dress and exposed shoulders were prettier. In my mind I remembered the game plan how to win the cuter, talking to the one I am less interested in.
+Never did it. I still need to learn how to overcome my approach anxiety.</span>
+
+                            <span class="chatlog__edited-timestamp" title="23-May-22 06:34 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978319248571113493" class="chatlog__message-container " data-message-id="978319248571113493">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-May-22 06:31 PM">18:31</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Hour later:
+I know three of the men in the big company, and one of them has a birthday. We talk.
+Then he invites me to talk more among the rest of the people.
+The birthday man asks me how big is my out-of-school organization.
+I say that we are going to Estonia and the cure girl gasps.
+Then she asks me of my name and responds with another gasp, her boyfriend has a very similar name. She is so excited that she never gave her name and I never knew it.
+Then I joke if she took the ferry to Finland and she enthusiastically tells me a short story.
+I mention Germany and that I have taken a ferry to Finland and she is overwhelmed by the coincidences. She had been in Germany too.
+Her reactions are like &quot;I can&#39;t believe this is happening. Who are you? Where have I seen you before? You look so familiar.&quot;
+Then we give cheers and she asks why no alcohol. I say that I am with the car and that I am on medications. She cheers me again and thanks me genuinely for my sincerely and openness.
+Then a woman comes to say that she is leaving and the girl asks if it is too strange that she is with her mother.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978319404171415572" class="chatlog__message-container " data-message-id="978319404171415572">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-May-22 06:32 PM">18:32</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">I respond that we are in an eastern country and here family is still highly valued. I say that I have been to the movies with my mother.
+She literally jumps on my neck and hugs me passionately. I feel her breasts against me.
+Then we talk about KGB and communism museums in Tallinn and about elevators that come on themselves when you open the front door.
+I mention a few inventions that we did so that one can do a phone call to the heater at home, and that a small robot can turn the coffee machine for her too. We even have a charger that shuts down after three hours of charge.
+She asks me why do I do stuff like that.
+I answer with the question why musicians make music and why do painters paint. That is my way to create stuff and it is very rewarding your creation to work and do what needs to be done.
+She is blasted. She is impressed by the passion.
+She mentions that programmers are always attracted to her. Even in the middle of Spain, on a mountaintop, there was a programmer to come to talk to her.
+Here I remind her that she started the conversation with me.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978319523658752100" class="chatlog__message-container " data-message-id="978319523658752100">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-May-22 06:32 PM">18:32</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Now she enters an interesting state where she is confused whether she should tell me something.
+She is nervous and excited most of the time we speak and I wonder why exactly. Is it only the coincidences.
+
+It turns out she noticed me the moment I entered the bar. And I have sent electricity to the place for her.
+Around that point, I get nervous and excited too, because I realize that girl is very much into me, and I like her too!
+She asks me if I knew that she had noticed me right away.
+I am honest and say no.
+Then I wonder if, but eventually, I share a story that two years ago I entered a room to teach a girl and that other girl was immediately into me. I knew she was a year later. So yeah, that has happened before, I had no idea why and how.
+The cute girl in the bar asks me if I have sensed the electricity back then. I say no, I am sorry. It is part of me that I am not aware of. Like a fish that is not aware of the water.
+She sais yes, I have heard that and I don&#39;t understand it.
+And here comes drop in the vibe. Her glass is empty and she goes away. Because the mood had dropped, I decide not the chase her but move away too.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978319633130086430" class="chatlog__message-container " data-message-id="978319633130086430">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-May-22 06:32 PM">18:32</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">A few minutes later she plays pool on the billiards table with a middle age man. I am kind of jealous but never mind. I have an idea what to say and to continue were we stopped if the chance be.
+I move to the pool table and watch the play. She is into the game.
+A few minutes later our eyes meet and I hold steady gaze and smile welcoming.
+Later she looks at me when I pretend not to be watching. Then I catch her look.
+The game ends and she comes to me on her own.
+I tell her that she was one attractive girl in the bar that wanted to talk to and wasn&#39;t able to approach, and I am happy to be talking with her now.
+She grabs my hand and pulls me out.
+We are in the antree of the bar hugging moving slowly. I wonder if she wants to dance or what. Apparently not.
+Over a few minutes of hugging and obvious body language, she raises her chin for the kiss.
+We kiss on the lips, and when I proceed to play with tongue she breaks the kiss but stays hugging me. We make out a few long minutes more and we talk hugged. I saw I noticed something is holding her back. And she says she is with her boyfriend.
+And I am like oh my, not again. A sexy girl is wildly into me and she is with a man. And I follow the commandment not to break existing couples.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978319751614971966" class="chatlog__message-container " data-message-id="978319751614971966">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-May-22 06:33 PM">18:33</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">And we keep making out. She shares that she feels me (my boner).
+I play with my hands on her body, lost in the moment, but never too much, as there are people leaving and entering the place all the time and we are in the antree.
+I play with her hair and pull her back. She kisses my neck and makes me breathe heavily. We are all over into a sexual foreplay and I tell her that at that point people around us would tell us to get a room. And I also tell her that I will not put her into trouble.
+She slows down and asks why then am I still there and doing that. I respond that I am enjoying the feelings and living the moment fully.
+That sparks some more confirmation for her and she continues.
+I cannot explain how she moves around and takes me with her - on the couches in front of the company hugging next to each other, then outside and there is rain beyond the end of the roof. Then back in the antree. And all the time she holds my hand, puts her hands on my body and almost kisses.
+At one point we are on the couch and she puts my hand between her thighs. This is my point where I clench my fist and muster all my strength to stop. I believe she enjoyed my struggle.
+At another point, we are making out in the antree and she says how is that happening, her little life is set up with a planned future and I appear out of nowhere, driving her crazy.
+At another moment we are in the antree, she turns around and I hug her from behind. We have done that a few times already. This time I hold her waist and push her back forward. She bends over and her ass presses fully against my boner. I have to pull her back up and clench my fist again.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978319879037935627" class="chatlog__message-container " data-message-id="978319879037935627">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-May-22 06:33 PM">18:33</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">At another moment we are in the antree and she moves steps away and looks at me. Asks me how to resist me. I crack up as I can&#39;t believe my ears. Then I thank her for the compliment and tell her that the way to resist is to be far away, not as close as now. And that she will be very proud of herself that she resisted at the end. She smiles, I think.
+That whole making out thing ends in about an hour. I had no clue of the time, all my attention was there and then, in the moment, being present, feeling with every part of my body the sensations and the warmth of that cute girl that will be gone by the end of the night.
+She asks me if it strange that we may never meet again, as we enter the bar.
+And it is my turn to put my face in my palms, as she did every time she heard a coincidence from my part.
+I tell her that she may or may not forget about me, but if she want something to remind her of me.
+And she says enthusiastically yes.
+There is this song of Modern Talking &quot;no name, no face, no number&quot; and I am living it right now.
+I never knew your name, you were too excited and never shared it. She said really and smiled.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978319947379900466" class="chatlog__message-container " data-message-id="978319947379900466">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-May-22 06:34 PM">18:34</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The rest of her initial group pack up and are about to leave.
+I feel like she was willing for me to either drive her home or walk her to the taxi.
+She even changed her mind from leaving with them to stay with me in the bar, but my gesture with two separating fingers, and some words from the company made her leave.
+And she is gone.
+And everyone knew I was making out with the hot girl. The girl from the first night on 9th congratulated me and asked what was going to happen next.
+So girls definitely notice when a man is with a girl, as the book said.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-978442349015339008" class="chatlog__message-container " data-message-id="978442349015339008">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">24-May-22 02:40 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Мило дневниче ==23 май ==
+
+Дали съм раздвоен, или използвач, или мъчител на мацката, или съм във sunken cost fallacy, или просто искам да си взема своето, или искам да си галя егото, или искам да си повишавам статуса пред Г. от Чаталджа. Не знам. Пиша и ще опитам да пиша и емоциите и мислите.
+В момента, в който седнах да пиша тук в драйв репорт за танцувалната Г., видях че Г. от Чаталджа е писала точно сега във файла за еротични фантазии, който ми сподели. Като един истински фен на моно-таскинга се поставям в много любопитна, средно-дискомфортна и нова за мен ситуация.
+Миналият четвъртък Г. реагира доста добре на откровението ми, че се целувам и с друга: “нормално е да си имаш side chicks”. После се оказа, че и тя си има Master. После на теста и двамата изкарахме зелени проценти за не-моногамност. 
+За мен не е супер нормално да си имам сайд-чик, особено по внимателният начин, по който бих искал да се отнасям със всяка от тях. И това, което реално ме притеснява е да успявам да ги държа в отделни стаи на менталният си дворец (което измислих в реално време докато пиша - има техника за ментален дворец, при която в различни стаи на въображаема сграда държим различни спомени. За Г. ще е спалнята ми, и диванът в хола - местата, където сме прекарали най-много разговори. 
+За танцувалната Г. ще е една от залите в офиса. Ще видим, може би просто ще трябва да навързвам информацията с локацията и мацката с която се е случила. 
+
+Това, което не уточних е, че гледам на Г. като дългосрочна връзка, а на танцувалната Г. като забежка, нещо без реално бъдеще, поради многото различия, които намирам с нея.
+И както заявих пред себе си, пред майка ми и пред Г., преди да правя секс с Г., ще и заявя, че в момента не съм моногамен, приятно ми е с нея и в компанията ѝ, мога и искам да ѝ дам много удоволствия, но съм желан мъж и не мога да ѝ гарантирам ексклузивност, не и преди да започнем да изкарваме много време заедно и да сме се опознали много дълбоко.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-978442400034852865" class="chatlog__message-container " data-message-id="978442400034852865">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="24-May-22 02:40 AM">02:40</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">и следва репорт в <span class="chatlog__markdown-mention">#&#127922;-dating-wins</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-983674234243002418" class="chatlog__message-container " data-message-id="983674234243002418">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="https://cdn.discordapp.com/avatars/264022670734131201/ef15ab4cc2c7eeaf139ee34d1eec1df7.png?size=512" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Scorpion#8959" data-user-id="264022670734131201">Scorpion</span>
+
+
+                        <span class="chatlog__timestamp">07-Jun-22 01:10 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Два въпроса:</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-983674364601978882" class="chatlog__message-container " data-message-id="983674364601978882">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="07-Jun-22 01:10 PM">13:10</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Кои от вас са имали извънтелесни или тантрични преживявания по време на секс?</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="ballot_box_with_check">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="☑️" src="https://twemoji.maxcdn.com/2/svg/2611.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="regional_indicator_x">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#127485;" src="https://twemoji.maxcdn.com/2/svg/1f1fd.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-983674691698950174" class="chatlog__message-container " data-message-id="983674691698950174">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="07-Jun-22 01:12 PM">13:12</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Кой от вас желае да напиша разказ за това което се случи вчера с мацката ми в областта на извънтелесно преживяване / надрусване/ чрез секс и циркулация на енергия?</span>
+
+                    </div>
+
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="hand_splayed">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128400;️" src="https://twemoji.maxcdn.com/2/svg/1f590.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction" title="thumbsdown">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128078;" src="https://twemoji.maxcdn.com/2/svg/1f44e.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="muscle">
+                                <img class="chatlog__emoji chatlog__emoji--small" alt="&#128170;" src="https://twemoji.maxcdn.com/2/svg/1f4aa.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 38 message(s)</div>
+</div>
+
+</body>
+
+</html>

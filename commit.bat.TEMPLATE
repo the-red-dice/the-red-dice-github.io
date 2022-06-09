@@ -1,0 +1,7 @@
+@echo off
+git config --local user.name the-red-dice
+git config --local user.email test@gmail.com
+git config --local credential.helper ""
+git add -A
+git commit -m "loop"
+git push https://the-red-dice:TOKEN@https://github.com/the-red-dice/the-red-dice.github.io origin/main
